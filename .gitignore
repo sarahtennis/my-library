@@ -1,3 +1,5 @@
+.DS_Store
+
 # Logs
 logs
 *.log
@@ -59,3 +61,6 @@ typings/
 
 # next.js build output
 .next
+
+# database file
+database.sqlite3
