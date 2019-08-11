@@ -17,9 +17,23 @@ router.get("/", (req, res) => {
     });
 });
 
+// GET /api/users/:id
+// returns user with given id
+router.get("/:id", (req, res) => {
+  const id = req.params.id;
+  db("users")
+    .where({ id })
+    .then(user => {
+      res.status(200).json(user);
+    })
+    .catch(err => {
+      res.status(501).json(err);
+    });
+});
+
 // POST /api/users
 // create new user in users table
-router.post("/new", (req, res) => {
+router.post("/", (req, res) => {
   const user = req.body;
 
   db("users")
@@ -29,6 +43,39 @@ router.post("/new", (req, res) => {
     })
     .catch(err => {
       res.status(500).json({ message: "Error inserting user", err });
+    });
+});
+
+// PUT /api/users/:id
+// updates user information
+router.put("/:id", (req, res) => {
+  const user = req.body;
+  const id = req.params.id;
+
+  db("users")
+    .where({ id })
+    .update(user)
+    .then(count => {
+      res.status(200).json(count);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+});
+
+// DELETE /api/users/:id
+// deletes user with given id
+router.delete("/:id", (req, res) => {
+  const id = req.params.id;
+
+  db("users")
+    .where({ id })
+    .del()
+    .then(count => {
+      res.status(200).json(count);
+    })
+    .catch(err => {
+      res.status(500).json(err);
     });
 });
 
