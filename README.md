@@ -14,6 +14,8 @@
 
 ## Data Models
 
+![terminal command](images/datamodels.png)
+
 ## Actions
 
 ## Environmental Variables
