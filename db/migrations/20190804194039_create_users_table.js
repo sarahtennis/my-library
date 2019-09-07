@@ -9,6 +9,7 @@ exports.up = function(knex, Promise) {
       .string("email", 128)
       .notNullable()
       .unique("email");
+    tbl.timestamp("created_at").defaultTo(knex.fn.now());
   });
 };
 
