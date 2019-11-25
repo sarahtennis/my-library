@@ -1,6 +1,6 @@
 
 exports.up = function(knex, Promise) {
-  return knex.schema.createTable("books", tbl => {
+  return knex.schema.createTable("account_details", tbl => {
     tbl.increments();
     tbl
         .integer("user_id")
@@ -8,13 +8,15 @@ exports.up = function(knex, Promise) {
         .notNullable();
     tbl.foreign("user_id").references("users.id");
     tbl
-    .string("isbn", 13)
-    .notNullable();
-    tbl.timestamp("created_at").defaultTo(knex.fn.now());
+    .string("latitude", 118);
+    tbl
+    .string("longitude", 118);
+    tbl
+    .string("avatar", 118);
   });
 };
 
 exports.down = function(knex, Promise) {
-    return knex.schema.dropTableIfExists("books");
+    return knex.schema.dropTableIfExists("account_details");
 };
   
