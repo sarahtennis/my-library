@@ -37,6 +37,7 @@ router.post("/", (req, res) => {
   const user = req.body;
 
   db("users")
+    .returning('id')
     .insert(user)
     .then(id => {
       res.status(201).json(id);

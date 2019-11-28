@@ -23,6 +23,7 @@ router.post("/", (req, res) => {
   const settings = req.body;
 
   db("account_settings")
+    .returning('id')
     .insert(settings)
     .then(id => {
       res.status(201).json(id);

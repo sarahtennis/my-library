@@ -6,6 +6,10 @@ beforeEach(async () => {
   await db.raw('TRUNCATE TABLE users CASCADE;');
 });
 
+afterAll(async () => {
+  await db.raw('TRUNCATE TABLE users CASCADE;');
+})
+
 const user1 = {
   username: 'user1',
   email: 'user1@email.com'
@@ -42,14 +46,13 @@ describe("GET /api/users", () => {
 describe("POST /api/users", () => {
   it('Valid user data', async () => {
     const postResponse = await request(server).post("/api/users").send(user1);
-    const rowsInserted = postResponse.body.rowCount;
     const getResponse = await request(server).get('/api/users');
     const allUsers = getResponse.body;
 
     // receives 201 status
     expect(postResponse.status).toEqual(201);
     // response asserts 1 inserted row
-    expect(rowsInserted).toEqual(1);
+    expect(postResponse.body.length).toEqual(1);
     // database reflects 1 inserted row
     expect(allUsers.length).toEqual(1);
 

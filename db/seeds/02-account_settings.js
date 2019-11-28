@@ -5,8 +5,7 @@ exports.seed = function(knex) {
     .then(function () {
       // Inserts seed entries
       return knex('account_settings').insert([
-        {id: 1, user_id: 1},
-        {id: 2, user_id: 2, view_library_friend_only: false}
+        {id: 1, user_id: 1}
       ]);
     });
 };

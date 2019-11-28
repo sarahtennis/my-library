@@ -8,23 +8,18 @@ exports.up = function(knex, Promise) {
     tbl.foreign("user_id").references("users.id").onDelete('CASCADE');
     tbl
       .boolean("account_visible")
-      .notNullable()
       .defaultTo(true);
     tbl
       .boolean("view_library_friend_only")
-      .notNullable()
       .defaultTo(true);
     tbl
       .boolean("message_friend_only")
-      .notNullable()
       .defaultTo(true);
     tbl
       .boolean("location_visible")
-      .notNullable()
       .defaultTo(true);
     tbl
       .boolean("lending_friend_only")
-      .notNullable()
       .defaultTo(true);
   });
 };

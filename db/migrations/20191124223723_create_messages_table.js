@@ -6,7 +6,7 @@ exports.up = function(knex, Promise) {
         .integer("to_user_id")
         .unsigned()
         .notNullable();
-    tbl.foreign("to_user_id").references("users.id".onDelete('CASCADE'));
+    tbl.foreign("to_user_id").references("users.id").onDelete('CASCADE');
     tbl
       .integer("from_user_id")
       .unsigned()
