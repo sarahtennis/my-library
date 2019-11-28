@@ -6,7 +6,7 @@ exports.up = function(knex, Promise) {
         .integer("user_id")
         .unsigned()
         .notNullable();
-    tbl.foreign("user_id").references("users.id");
+    tbl.foreign("user_id").references("users.id").onDelete('CASCADE');
     tbl
     .string("isbn", 13)
     .notNullable();
@@ -17,4 +17,3 @@ exports.up = function(knex, Promise) {
 exports.down = function(knex, Promise) {
     return knex.schema.dropTableIfExists("books");
 };
-  

@@ -6,12 +6,12 @@ exports.up = function(knex, Promise) {
         .integer("target_user_id")
         .unsigned()
         .notNullable();
-    tbl.foreign("target_user_id").references("users.id");
+    tbl.foreign("target_user_id").references("users.id").onDelete('CASCADE');
     tbl
         .integer("friend_user_id")
         .unsigned()
         .notNullable();
-    tbl.foreign("friend_user_id").references("users.id");
+    tbl.foreign("friend_user_id").references("users.id").onDelete('CASCADE');
     tbl.timestamp("created_at").defaultTo(knex.fn.now());
   });
 };
@@ -19,4 +19,3 @@ exports.up = function(knex, Promise) {
 exports.down = function(knex, Promise) {
     return knex.schema.dropTableIfExists("friends");
 };
-  

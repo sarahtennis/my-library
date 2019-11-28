@@ -6,12 +6,12 @@ exports.up = function(knex, Promise) {
         .integer("to_user_id")
         .unsigned()
         .notNullable();
-    tbl.foreign("to_user_id").references("users.id");
+    tbl.foreign("to_user_id").references("users.id".onDelete('CASCADE'));
     tbl
       .integer("from_user_id")
       .unsigned()
       .notNullable();
-    tbl.foreign("from_user_id").references("users.id");
+    tbl.foreign("from_user_id").references("users.id").onDelete('CASCADE');
     tbl
       .string("content", 500)
       .notNullable();
@@ -22,4 +22,3 @@ exports.up = function(knex, Promise) {
 exports.down = function(knex, Promise) {
     return knex.schema.dropTableIfExists("messages");
 };
-  

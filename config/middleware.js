@@ -4,6 +4,8 @@ const helmet = require("helmet");
 
 const testRouter = require("../routers/testRouter.js");
 const usersRouter = require("../routers/usersRouter.js");
+const accountSettingsRouter = require('../routers/accountSettingsRouter.js');
+const accountDetailsRouter = require('../routers/accountDetailsRouter.js');
 
 module.exports = server => {
   // middleware
@@ -14,4 +16,6 @@ module.exports = server => {
   // express routers
   server.use("/test", testRouter);
   server.use("/api/users", usersRouter);
+  server.use("/api/accountSettings", accountSettingsRouter);
+  server.use("/api/accountDetails", accountDetailsRouter);
 };

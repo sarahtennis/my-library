@@ -6,7 +6,7 @@ exports.up = function(knex, Promise) {
         .integer("user_id")
         .unsigned()
         .notNullable();
-    tbl.foreign("user_id").references("users.id");
+    tbl.foreign("user_id").references("users.id").onDelete('CASCADE');
     tbl
     .string("latitude", 118);
     tbl
@@ -19,4 +19,3 @@ exports.up = function(knex, Promise) {
 exports.down = function(knex, Promise) {
     return knex.schema.dropTableIfExists("account_details");
 };
-  
